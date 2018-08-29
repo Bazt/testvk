@@ -34,8 +34,8 @@ class FBSTableVC: UITableViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCellId", for: indexPath) as UITableViewCell
-        let itemsToShow = TestDataProvider.shared.friends
-        cell.textLabel?.text = itemsToShow[indexPath.row]
+        
+        cell. = TestDataProvider.shared.friends[indexPath.row]
         
         print("cellForRowAt \(indexPath.row), title = \(cell.textLabel?.text ?? "nil")")
         return cell

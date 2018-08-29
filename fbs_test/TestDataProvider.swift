@@ -16,6 +16,10 @@ class TestDataProvider
     var friendIds = [Int]()
     var friends = [String]()
     
+    func getPhotoUrlFor(userId ids: String)
+    {
+        let api = VKApi.users().get(["user_ids" : ids, "fields" : "photo_50"])
+    }
     
     func getFriendsInfo(_ completion: @escaping () -> ())
     {

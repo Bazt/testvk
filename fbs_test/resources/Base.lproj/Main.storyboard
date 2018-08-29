@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -72,6 +73,9 @@
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKH-jn-c0S">
                                     <rect key="frame" x="73" y="0.0" width="302" height="44"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" staticText="YES" causesPageTurn="YES"/>
+                                    </accessibility>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -85,6 +89,33 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9zP-zh-40N" id="vgs-mO-yvq">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tuy-IU-Ls4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" image="default_avatar.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6dU-pl-nUf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="94" height="43.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnK-uD-olX">
+                                                    <rect key="frame" x="94" y="0.0" width="281" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6dU-pl-nUf" firstAttribute="top" secondItem="Tuy-IU-Ls4" secondAttribute="top" id="2uP-Z7-YGN"/>
+                                                <constraint firstItem="LnK-uD-olX" firstAttribute="width" secondItem="Tuy-IU-Ls4" secondAttribute="width" multiplier="0.75" id="tHC-nG-nb1"/>
+                                                <constraint firstItem="6dU-pl-nUf" firstAttribute="width" secondItem="Tuy-IU-Ls4" secondAttribute="width" multiplier="0.25" id="wgF-kd-gSH"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Tuy-IU-Ls4" firstAttribute="height" secondItem="vgs-mO-yvq" secondAttribute="height" id="AsD-CH-EaE"/>
+                                        <constraint firstItem="Tuy-IU-Ls4" firstAttribute="leading" secondItem="vgs-mO-yvq" secondAttribute="leading" id="I0F-uQ-jH6"/>
+                                        <constraint firstItem="Tuy-IU-Ls4" firstAttribute="top" secondItem="vgs-mO-yvq" secondAttribute="top" id="lbf-CY-Ze1"/>
+                                        <constraint firstItem="Tuy-IU-Ls4" firstAttribute="width" secondItem="vgs-mO-yvq" secondAttribute="width" id="tns-G8-cs6"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -104,4 +135,7 @@
             <point key="canvasLocation" x="832.79999999999995" y="33.733133433283363"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="default_avatar.png" width="50" height="50"/>
+    </resources>
 </document>
