@@ -9,8 +9,15 @@
 import UIKit
 import VK_ios_sdk
 
-class ViewController: UIViewController, VKSdkDelegate, VKSdkUIDelegate
+protocol InitialViewControllerProtocol: class
 {
+    func showFriendsList()
+}
+
+class ViewController: UIViewController, InitialViewControllerProtocol, VKSdkDelegate, VKSdkUIDelegate
+{
+    var interactor: InitialViewInteractorProtocol?
+
     func vkSdkShouldPresent(_ controller: UIViewController!)
     {
         if (self.presentedViewController != nil)
@@ -42,7 +49,23 @@ class ViewController: UIViewController, VKSdkDelegate, VKSdkUIDelegate
 
     }
     
-
+    func showFriendsList() {
+        
+    }
+    
+    private func config()
+    {
+        let interactor = InitialViewInteractor()
+        let presenter = InitialViewPresenter()
+        self.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = self
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
 
     func afterAuth()
     {
@@ -53,22 +76,9 @@ class ViewController: UIViewController, VKSdkDelegate, VKSdkUIDelegate
 
     @IBAction func touchUpInside(_ sender: Any)
     {
-        let scope = ["friends", "email"]
-        VKSdk.wakeUpSession(scope)
-        {
-            (state, error) in
-            if (state == VKAuthorizationState.authorized)
-            {
-                // Authorized and ready to go
-                self.afterAuth()
-            } else if (state == VKAuthorizationState.initialized)
-            {
-                VKSdk.authorize(scope)
-            } else
-            {
-                print("sorry can't do that")
-            }
-        }
+        interactor?.authorize()
+        
+
     }
 
     override func viewDidLoad()
@@ -80,8 +90,6 @@ class ViewController: UIViewController, VKSdkDelegate, VKSdkUIDelegate
         {
             sdk.uiDelegate = self
             sdk.register(self)
-
-
         }
 
     }
