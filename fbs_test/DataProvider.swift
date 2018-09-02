@@ -17,11 +17,11 @@ protocol FriendProtocol
     }
     var id: String?
     {
-        get set
+        get
     }
     var imageUrl: URL?
     {
-        get
+        get set
     }
 }
 
@@ -42,22 +42,52 @@ struct Friend: FriendProtocol
 
 typealias ResultForFriends = RequestResult<[FriendProtocol], Error>
 
-protocol VkDataProviderProtocol
+protocol DataProviderProtocol
 {
     func getFriendsWithImages(for interactor: FriendListInteractorProtocol)
+    func getDataForHeader(for interactor: FriendListInteractorProtocol)
 }
 
-class VkDataProvider: VkDataProviderProtocol
+class DataProvider: DataProviderProtocol
 {
-    static let instance = VkDataProvider()
+    static let instance = DataProvider()
 
-    private var friends: [FriendProtocol]?
+    private var friends: [FriendProtocol]
 
     private init()
     {
-
+        friends = []
     }
     
+    func getDataForHeader(for interactor: FriendListInteractorProtocol)
+    {
+        let vk = VKApi.users().get(["fields" : "photo_50"])
+        vk?.execute(
+            resultBlock:
+            {
+                response in
+                
+                guard let response = response?.json as? [Any],
+                    let info = response.first as? [AnyHashable : Any],
+                    let firstName = info["first_name"] as? String,
+                    let lastName = info["last_name"] as? String,
+                    let id = info["id"] as? String,
+                    let imageUrl = info ["photo_50"] as? String else
+                {
+                    return
+                }
+                
+                let name = "\(firstName) \(lastName)"
+                let url = URL(string: imageUrl)!
+                interactor.onDataForHeader(data: HeaderInfo(imageUrl: url, name: name, id: id))
+            
+            },
+            errorBlock:
+            {
+                error in
+                
+            })
+    }
 
     private func obtainFriends(completion: @escaping (ResultForFriends) -> Void)
     {
@@ -98,7 +128,9 @@ class VkDataProvider: VkDataProviderProtocol
                                     let urlString = user["photo_50"] as? String
                                 {
                                     let name = "\(firstName) \(lastName)"
-                                    let friend = Friend(name: name, id: String(id), imageUrl: URL(string: urlString))
+                                    let userId = String(id)
+                                    let friend = Friend(name: name, id: userId, imageUrl: URL(string: urlString)!)
+                                    
                                     friends.append(friend)
                                 }
                             }
@@ -118,11 +150,30 @@ class VkDataProvider: VkDataProviderProtocol
                     completion(ResultForFriends(withError: error!))
                 })
     }
-
+    
+    private func updateAllUrls()
+    {
+        var changedFriends = [FriendProtocol]()
+        
+        for friend in friends
+        {
+            let avatarUrl = AvatarManager.instance.url(for: friend.id!)
+            if !AvatarManager.instance.haveAvatarFor(userId: friend.id!)
+            {
+                var newFriend = friend
+                newFriend.imageUrl = avatarUrl
+                changedFriends.append(newFriend)
+            }
+        }
+        
+        friends = changedFriends
+    }
+    
     func getFriendsWithImages(for interactor: FriendListInteractorProtocol)
     {
         obtainFriends
         {
+            self.updateAllUrls()
             interactor.onFriendListResult(result: $0)
         }
     }

@@ -12,14 +12,26 @@ import VK_ios_sdk
 protocol FriendListInteractorProtocol: class {
     func getFriendList()
     func onFriendListResult(result: ResultForFriends)
+    func getDataForHeader()
+    func onDataForHeader(data: HeaderInfo)
 }
 
 class FriendListInteractor: FriendListInteractorProtocol  {
     var presenter: FriendListPresenterProtocol?
     
+    func getDataForHeader()
+    {
+        DataProvider.instance.getDataForHeader(for: self)
+    }
+    
+    func onDataForHeader(data: HeaderInfo)
+    {
+        presenter?.presentHeader(with: data)
+    }
+    
     func getFriendList()
     {
-        VkDataProvider.instance.getFriendsWithImages(for: self)
+        DataProvider.instance.getFriendsWithImages(for: self)
     }
     
     func onFriendListResult(result: ResultForFriends)

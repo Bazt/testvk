@@ -12,6 +12,7 @@ protocol FriendListPresenterProtocol
 {
     func presentFriends(friends: [FriendProtocol])
     func presentError(error: Error?)
+    func presentHeader(with data: HeaderInfo)
 }
 
 class FriendListPresenter: FriendListPresenterProtocol {
@@ -25,5 +26,10 @@ class FriendListPresenter: FriendListPresenterProtocol {
     func presentError(error: Error?)
     {
         
+    }
+    
+    func presentHeader(with data: HeaderInfo)
+    {
+        viewController?.updateHeader(with: data)
     }
 }

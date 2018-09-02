@@ -25,54 +25,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pods/VK-ios-sdk/library/Source/VKSdk.m"
-            timestampString = "556996464.369498"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "+authorize:withOptions:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/VK-ios-sdk/library/Source/VKSdk.m"
-            timestampString = "556996464.3695951"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
-            landmarkName = "+authorize:withOptions:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/VK-ios-sdk/library/Source/VKSdk.m"
-            timestampString = "556996464.369663"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "+authorize:withOptions:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "fbs_test/FBSTableVC.swift"
             timestampString = "557274348.335007"
             startingColumnNumber = "9223372036854775807"
@@ -138,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "fbs_test/VkDataProvider.swift"
-            timestampString = "557587159.876707"
+            timestampString = "557601958.699452"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "obtainFriends(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -153,13 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "fbs_test/VkDataProvider.swift"
-            timestampString = "557587159.877201"
+            filePath = "fbs_test/InitialScene/InitialViewInteractor.swift"
+            timestampString = "557624913.860705"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "obtainFriends(completion:)"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "vkSdkAccessAuthorizationFinished(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -169,13 +121,109 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "fbs_test/VkDataProvider.swift"
-            timestampString = "557587159.877466"
+            filePath = "fbs_test/ImageSelectionScene/ImageSelectionController.swift"
+            timestampString = "557624913.86078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "obtainFriends(completion:)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "imagePickerController(picker:didFinishPickingImage:editingInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "fbs_test.ImageSelectionViewController.imagePickerController(picker: Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIImagePickerController&gt;, didFinishPickingImage: Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIImage&gt;, editingInfo: Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.NSDictionary&gt;) -&gt; ()"
+                  moduleName = "fbs_test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/oleg/Documents/projects/fbs_test/fbs_test/ImageSelectionScene/ImageSelectionController.swift"
+                  timestampString = "557624913.987722"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in fbs_test.ImageSelectionViewController.imagePickerController(picker: Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIImagePickerController&gt;, didFinishPickingImage: Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIImage&gt;, editingInfo: Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.NSDictionary&gt;) -&gt; ()"
+                  moduleName = "fbs_test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/oleg/Documents/projects/fbs_test/fbs_test/ImageSelectionScene/ImageSelectionController.swift"
+                  timestampString = "557624913.990818"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "41">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fbs_test/ImageSelectionScene/ImageSelectionController.swift"
+            timestampString = "557624913.860841"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "imagePickerController(picker:didFinishPickingImage:editingInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fbs_test/FriendListScene/FriendListViewController.swift"
+            timestampString = "557624913.860904"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "downloaded(from:id:contentMode:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fbs_test/AvatarManager.swift"
+            timestampString = "557624913.8609591"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "saveAvatar(from:for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fbs_test/FriendListScene/FriendListViewController.swift"
+            timestampString = "557624913.861304"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "downloaded(from:id:contentMode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

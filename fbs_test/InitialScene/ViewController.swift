@@ -83,12 +83,14 @@ class ViewController: UIViewController, InitialViewControllerProtocol, VKSdkUIDe
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        //self.navigationController!.navigationBar.backItem?.title = "Log out"
         if let sdk = VKSdk.initialize(withAppId: "6672671")
         {
             sdk.uiDelegate = self
             sdk.register(interactor!)
         }
+        
+        
 
     }
 

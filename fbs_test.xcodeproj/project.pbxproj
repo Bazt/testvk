@@ -12,13 +12,18 @@
 		7C0D0E3F2131B71900E2ED19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0E3D2131B71900E2ED19 /* Main.storyboard */; };
 		7C0D0E412131B71B00E2ED19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0E402131B71B00E2ED19 /* Assets.xcassets */; };
 		7C0D0E442131B71B00E2ED19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0E422131B71B00E2ED19 /* LaunchScreen.storyboard */; };
-		7C2D7A512133199800BA417D /* FriendListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D7A502133199800BA417D /* FriendListTableVC.swift */; };
+		7C2D7A512133199800BA417D /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D7A502133199800BA417D /* FriendListViewController.swift */; };
 		7C2D7A532133212600BA417D /* TestDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D7A522133212600BA417D /* TestDataProvider.swift */; };
 		7C2E1745213BFC3F005079B3 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E1744213BFC3F005079B3 /* RequestResult.swift */; };
 		7C2E1749213C0B46005079B3 /* FriendListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E1748213C0B46005079B3 /* FriendListInteractor.swift */; };
 		7C2E174B213C0B9C005079B3 /* FriendListPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E174A213C0B9C005079B3 /* FriendListPresenterProtocol.swift */; };
+		7C2E174D213C4665005079B3 /* ImageSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E174C213C4665005079B3 /* ImageSelectionController.swift */; };
+		7C2E1750213C46E6005079B3 /* ImageSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E174F213C46E6005079B3 /* ImageSelectionInteractor.swift */; };
+		7C2E1752213C4707005079B3 /* ImageSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E1751213C4707005079B3 /* ImageSelectionPresenter.swift */; };
+		7C2E1754213C9260005079B3 /* AvatarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E1753213C9260005079B3 /* AvatarManager.swift */; };
+		7C2E1756213C99F1005079B3 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E1755213C99F1005079B3 /* Downloader.swift */; };
 		7C6FBEFF21374CFD00C758AF /* default_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6FBEFE21374CFD00C758AF /* default_avatar.png */; };
-		7C6FBF02213ACE5D00C758AF /* VkDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FBF01213ACE5D00C758AF /* VkDataProvider.swift */; };
+		7C6FBF02213ACE5D00C758AF /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FBF01213ACE5D00C758AF /* DataProvider.swift */; };
 		BD8328142139A7FA0048BF19 /* InitialViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8328122139A7F90048BF19 /* InitialViewInteractor.swift */; };
 		BD8328152139A7FA0048BF19 /* InitialViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8328132139A7F90048BF19 /* InitialViewPresenter.swift */; };
 		FCB6A811A5E6E7FFA74277AC /* Pods_fbs_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A63F66817D563F3007B54F /* Pods_fbs_test.framework */; };
@@ -34,13 +39,18 @@
 		7C0D0E432131B71B00E2ED19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C0D0E452131B71B00E2ED19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C0D0E5F2131BBFF00E2ED19 /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
-		7C2D7A502133199800BA417D /* FriendListTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListTableVC.swift; sourceTree = "<group>"; };
+		7C2D7A502133199800BA417D /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		7C2D7A522133212600BA417D /* TestDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataProvider.swift; sourceTree = "<group>"; };
 		7C2E1744213BFC3F005079B3 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		7C2E1748213C0B46005079B3 /* FriendListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListInteractor.swift; sourceTree = "<group>"; };
 		7C2E174A213C0B9C005079B3 /* FriendListPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListPresenterProtocol.swift; sourceTree = "<group>"; };
+		7C2E174C213C4665005079B3 /* ImageSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionController.swift; sourceTree = "<group>"; };
+		7C2E174F213C46E6005079B3 /* ImageSelectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionInteractor.swift; sourceTree = "<group>"; };
+		7C2E1751213C4707005079B3 /* ImageSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionPresenter.swift; sourceTree = "<group>"; };
+		7C2E1753213C9260005079B3 /* AvatarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarManager.swift; sourceTree = "<group>"; };
+		7C2E1755213C99F1005079B3 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		7C6FBEFE21374CFD00C758AF /* default_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_avatar.png; sourceTree = "<group>"; };
-		7C6FBF01213ACE5D00C758AF /* VkDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkDataProvider.swift; sourceTree = "<group>"; };
+		7C6FBF01213ACE5D00C758AF /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		A9A63F66817D563F3007B54F /* Pods_fbs_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fbs_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8328122139A7F90048BF19 /* InitialViewInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewInteractor.swift; sourceTree = "<group>"; };
 		BD8328132139A7F90048BF19 /* InitialViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewPresenter.swift; sourceTree = "<group>"; };
@@ -99,14 +109,17 @@
 			children = (
 				7C2E1747213C0017005079B3 /* FriendListScene */,
 				7C2E1746213BFFEE005079B3 /* InitialScene */,
+				7C2E174E213C466B005079B3 /* ImageSelectionScene */,
 				7C6FBF0021374D8B00C758AF /* resources */,
 				7C0D0E392131B71900E2ED19 /* AppDelegate.swift */,
 				7C0D0E402131B71B00E2ED19 /* Assets.xcassets */,
 				7C0D0E452131B71B00E2ED19 /* Info.plist */,
 				7C0D0E5F2131BBFF00E2ED19 /* BridgeHeader.h */,
 				7C2D7A522133212600BA417D /* TestDataProvider.swift */,
-				7C6FBF01213ACE5D00C758AF /* VkDataProvider.swift */,
+				7C6FBF01213ACE5D00C758AF /* DataProvider.swift */,
 				7C2E1744213BFC3F005079B3 /* RequestResult.swift */,
+				7C2E1753213C9260005079B3 /* AvatarManager.swift */,
+				7C2E1755213C99F1005079B3 /* Downloader.swift */,
 			);
 			path = fbs_test;
 			sourceTree = "<group>";
@@ -124,11 +137,21 @@
 		7C2E1747213C0017005079B3 /* FriendListScene */ = {
 			isa = PBXGroup;
 			children = (
-				7C2D7A502133199800BA417D /* FriendListTableVC.swift */,
+				7C2D7A502133199800BA417D /* FriendListViewController.swift */,
 				7C2E1748213C0B46005079B3 /* FriendListInteractor.swift */,
 				7C2E174A213C0B9C005079B3 /* FriendListPresenterProtocol.swift */,
 			);
 			path = FriendListScene;
+			sourceTree = "<group>";
+		};
+		7C2E174E213C466B005079B3 /* ImageSelectionScene */ = {
+			isa = PBXGroup;
+			children = (
+				7C2E174C213C4665005079B3 /* ImageSelectionController.swift */,
+				7C2E1751213C4707005079B3 /* ImageSelectionPresenter.swift */,
+				7C2E174F213C46E6005079B3 /* ImageSelectionInteractor.swift */,
+			);
+			path = ImageSelectionScene;
 			sourceTree = "<group>";
 		};
 		7C6FBF0021374D8B00C758AF /* resources */ = {
@@ -255,15 +278,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C2E174B213C0B9C005079B3 /* FriendListPresenterProtocol.swift in Sources */,
-				7C6FBF02213ACE5D00C758AF /* VkDataProvider.swift in Sources */,
+				7C2E1750213C46E6005079B3 /* ImageSelectionInteractor.swift in Sources */,
+				7C6FBF02213ACE5D00C758AF /* DataProvider.swift in Sources */,
+				7C2E1754213C9260005079B3 /* AvatarManager.swift in Sources */,
 				BD8328152139A7FA0048BF19 /* InitialViewPresenter.swift in Sources */,
-				7C2D7A512133199800BA417D /* FriendListTableVC.swift in Sources */,
+				7C2E1756213C99F1005079B3 /* Downloader.swift in Sources */,
+				7C2D7A512133199800BA417D /* FriendListViewController.swift in Sources */,
+				7C2E174D213C4665005079B3 /* ImageSelectionController.swift in Sources */,
 				7C0D0E3C2131B71900E2ED19 /* ViewController.swift in Sources */,
 				7C2D7A532133212600BA417D /* TestDataProvider.swift in Sources */,
 				7C2E1749213C0B46005079B3 /* FriendListInteractor.swift in Sources */,
 				7C0D0E3A2131B71900E2ED19 /* AppDelegate.swift in Sources */,
 				7C2E1745213BFC3F005079B3 /* RequestResult.swift in Sources */,
 				BD8328142139A7FA0048BF19 /* InitialViewInteractor.swift in Sources */,
+				7C2E1752213C4707005079B3 /* ImageSelectionPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
