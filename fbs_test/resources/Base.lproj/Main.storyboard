@@ -56,23 +56,23 @@
             </objects>
             <point key="canvasLocation" x="-57" y="32"/>
         </scene>
-        <!--TableVC-->
+        <!--Friend List TableVC-->
         <scene sceneID="muU-sz-VTc">
             <objects>
-                <tableViewController id="VBW-ug-bLJ" customClass="FBSTableVC" customModule="fbs_test" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="VBW-ug-bLJ" customClass="FriendListTableVC" customModule="fbs_test" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UKw-HK-Mkc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="67J-1Y-FUZ">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" misplaced="YES" id="67J-1Y-FUZ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZoI-6Y-3kr">
-                                    <rect key="frame" x="0.0" y="0.0" width="73" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="73" height="111"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKH-jn-c0S">
-                                    <rect key="frame" x="73" y="0.0" width="302" height="44"/>
+                                    <rect key="frame" x="73" y="0.0" width="302" height="111"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <accessibilityTraits key="traits" staticText="YES" causesPageTurn="YES"/>
                                     </accessibility>
@@ -84,7 +84,7 @@
                         </stackView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseCellId" id="9zP-zh-40N">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="139" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9zP-zh-40N" id="vgs-mO-yvq">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -94,10 +94,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" image="default_avatar.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6dU-pl-nUf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="94" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="94.5" height="43.5"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnK-uD-olX">
-                                                    <rect key="frame" x="94" y="0.0" width="281" height="43.5"/>
+                                                    <rect key="frame" x="94.5" y="0.0" width="280.5" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

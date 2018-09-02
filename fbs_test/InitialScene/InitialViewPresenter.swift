@@ -9,14 +9,18 @@
 import Foundation
 
 protocol InitialViewPresenterProtocol {
-    func authorizationWith(_ result: Bool)
+    func authorization(success: Bool)
 }
 
 class InitialViewPresenter: InitialViewPresenterProtocol {
-    func authorizationWith(_ result: Bool) {
-        if result
+    func authorization(success: Bool) {
+        if success
         {
-            viewController?.showFriendsList()
+            viewController?.authorizationSucceeded()
+        }
+        else
+        {
+            viewController?.authorizationFaild(with: nil)
         }
     }
     

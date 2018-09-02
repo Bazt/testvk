@@ -9,14 +9,15 @@
 import Foundation
 import VK_ios_sdk
 
-protocol InitialViewInteractorProtocol {
+protocol InitialViewInteractorProtocol: VKSdkDelegate {
     func authorize()
 }
 
-class InitialViewInteractor: InitialViewInteractorProtocol {
+class InitialViewInteractor: NSObject, InitialViewInteractorProtocol  {
     var presenter: InitialViewPresenterProtocol?
     
-    func authorize() {
+    func authorize()
+    {
         let scope = ["friends", "email"]
         VKSdk.wakeUpSession(scope)
         {
@@ -24,7 +25,8 @@ class InitialViewInteractor: InitialViewInteractorProtocol {
             if (state == VKAuthorizationState.authorized)
             {
                 // Authorized and ready to go
-                self.presenter?.authorizationWith(true)
+                //VkDataProvider.instance.getFriendsWithImages(for: self)
+                self.presenter?.authorization(success: true)
             } else if (state == VKAuthorizationState.initialized)
             {
                 VKSdk.authorize(scope)
@@ -33,6 +35,16 @@ class InitialViewInteractor: InitialViewInteractorProtocol {
                 print("sorry can't do that")
             }
         }
+    }
+    
+    func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!)
+    {
+        presenter?.authorization(success: true)
+    }
+    
+    func vkSdkUserAuthorizationFailed()
+    {
+        presenter?.authorization(success: false)
     }
     
     

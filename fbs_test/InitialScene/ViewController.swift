@@ -11,13 +11,24 @@ import VK_ios_sdk
 
 protocol InitialViewControllerProtocol: class
 {
-    func showFriendsList()
+    func authorizationSucceeded()
+    func authorizationFaild(with error: Error?)
 }
 
-class ViewController: UIViewController, InitialViewControllerProtocol, VKSdkDelegate, VKSdkUIDelegate
+class ViewController: UIViewController, InitialViewControllerProtocol, VKSdkUIDelegate
 {
     var interactor: InitialViewInteractorProtocol?
 
+    func authorizationSucceeded()
+    {
+        showNextController()
+    }
+    
+    func authorizationFaild(with error: Error?)
+    {
+        
+    }
+    
     func vkSdkShouldPresent(_ controller: UIViewController!)
     {
         if (self.presentedViewController != nil)
@@ -38,22 +49,23 @@ class ViewController: UIViewController, InitialViewControllerProtocol, VKSdkDele
     {
 
     }
-
-    func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!)
+    
+    func showNextController()
     {
-        afterAuth()
-    }
-
-    func vkSdkUserAuthorizationFailed()
-    {
-
+        self.performSegue(withIdentifier: "friendsListSegue", sender: self)
     }
     
-    func showFriendsList() {
-        
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
     
-    private func config()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup()
     {
         let interactor = InitialViewInteractor()
         let presenter = InitialViewPresenter()
@@ -61,24 +73,10 @@ class ViewController: UIViewController, InitialViewControllerProtocol, VKSdkDele
         interactor.presenter = presenter
         presenter.viewController = self
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
-    func afterAuth()
-    {
-        TestDataProvider.shared.getFriends {
-            self.performSegue(withIdentifier: "friendsListSegue", sender: self)
-        }
-    }
 
     @IBAction func touchUpInside(_ sender: Any)
     {
         interactor?.authorize()
-        
-
     }
 
     override func viewDidLoad()
@@ -89,7 +87,7 @@ class ViewController: UIViewController, InitialViewControllerProtocol, VKSdkDele
         if let sdk = VKSdk.initialize(withAppId: "6672671")
         {
             sdk.uiDelegate = self
-            sdk.register(self)
+            sdk.register(interactor!)
         }
 
     }

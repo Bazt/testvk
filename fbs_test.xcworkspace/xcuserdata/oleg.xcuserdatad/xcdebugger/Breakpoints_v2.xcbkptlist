@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "fbs_test/ViewController.swift"
-            timestampString = "557001381.9756711"
+            timestampString = "557504126.022862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
             endingLineNumber = "32"
-            landmarkName = "vkSdkNeedCaptchaEnter(_:)"
+            landmarkName = "vkSdkShouldPresent(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "fbs_test/TestDataProvider.swift"
-            timestampString = "557274348.335072"
+            filePath = "fbs_test/ViewController.swift"
+            timestampString = "557504126.0233901"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "getFriendsInfo(_:)"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "touchUpInside(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,61 +105,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "fbs_test/TestDataProvider.swift"
-            timestampString = "557274348.335119"
+            filePath = "fbs_test/InitialViewInteractor.swift"
+            timestampString = "557504139.543782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "getFriendsInfo(_:)"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "authorize()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "fbs_test.TestDataProvider.getFriendsInfo(() -&gt; ()) -&gt; ()"
-                  moduleName = "fbs_test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/oleg/Documents/projects/fbs_test/fbs_test/TestDataProvider.swift"
-                  timestampString = "557001337.271015"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "1612">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Optional&lt;__ObjC.VKResponse&lt;__ObjC.VKApiObject&gt;&gt;) -&gt; () in fbs_test.TestDataProvider.getFriendsInfo(() -&gt; ()) -&gt; ()"
-                  moduleName = "fbs_test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/oleg/Documents/projects/fbs_test/fbs_test/TestDataProvider.swift"
-                  timestampString = "557001337.273566"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "1747">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in fbs_test.TestDataProvider.getFriendsInfo(() -&gt; ()) -&gt; ()"
-                  moduleName = "fbs_test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/oleg/Documents/projects/fbs_test/fbs_test/TestDataProvider.swift"
-                  timestampString = "557001337.276258"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -168,13 +121,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "fbs_test/TestDataProvider.swift"
-            timestampString = "557274348.33516"
+            filePath = "fbs_test/FriendListScene/FriendListTableVC.swift"
+            timestampString = "557587159.8765939"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "getFriendsInfo(_:)"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "updateList(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fbs_test/VkDataProvider.swift"
+            timestampString = "557587159.876707"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "obtainFriends(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fbs_test/VkDataProvider.swift"
+            timestampString = "557587159.877201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "obtainFriends(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fbs_test/VkDataProvider.swift"
+            timestampString = "557587159.877466"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "obtainFriends(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
