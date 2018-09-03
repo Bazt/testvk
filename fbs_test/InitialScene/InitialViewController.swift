@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  InitialViewController.swift
 //  fbs_test
 //
 //  Created by Oleg Shcherbakov on 25/08/2018.
@@ -8,27 +8,60 @@
 
 import UIKit
 import VK_ios_sdk
+import Toast_Swift
 
 protocol InitialViewControllerProtocol: class
 {
     func authorizationSucceeded()
-    func authorizationFaild(with error: Error?)
+    func authorizationFaild(with error: Error)
 }
 
-class ViewController: UIViewController, InitialViewControllerProtocol, VKSdkUIDelegate
+class InitialViewController: UIViewController, InitialViewControllerProtocol, VKSdkUIDelegate
 {
     var interactor: InitialViewInteractorProtocol?
 
-    func authorizationSucceeded()
+    @IBAction func touchUpInside(_ sender: Any)
     {
-        showNextController()
+        interactor?.authorize()
+    }
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+
+    private func setup()
+    {
+        let interactor = InitialViewInteractor()
+        let presenter = InitialViewPresenter()
+        self.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = self
     }
     
-    func authorizationFaild(with error: Error?)
+    func showNextController()
     {
-        
+        self.performSegue(withIdentifier: "friendsListSegue", sender: self)
     }
-    
+
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        //self.navigationController!.navigationBar.backItem?.title = "Log out"
+        if let sdk = VKSdk.initialize(withAppId: "6672671")
+        {
+            sdk.uiDelegate = self
+            sdk.register(interactor!)
+        }
+    }
+
+    // MARK: VKSdkUIDelegate
     func vkSdkShouldPresent(_ controller: UIViewController!)
     {
         if (self.presentedViewController != nil)
@@ -47,57 +80,17 @@ class ViewController: UIViewController, InitialViewControllerProtocol, VKSdkUIDe
 
     func vkSdkNeedCaptchaEnter(_ captchaError: VKError!)
     {
-
-    }
-    
-    func showNextController()
-    {
-        self.performSegue(withIdentifier: "friendsListSegue", sender: self)
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private func setup()
-    {
-        let interactor = InitialViewInteractor()
-        let presenter = InitialViewPresenter()
-        self.interactor = interactor
-        interactor.presenter = presenter
-        presenter.viewController = self
     }
 
-    @IBAction func touchUpInside(_ sender: Any)
+    // MARK: InitialViewControllerProtocol
+    func authorizationSucceeded()
     {
-        interactor?.authorize()
+        showNextController()
     }
 
-    override func viewDidLoad()
+    func authorizationFaild(with error: Error)
     {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //self.navigationController!.navigationBar.backItem?.title = "Log out"
-        if let sdk = VKSdk.initialize(withAppId: "6672671")
-        {
-            sdk.uiDelegate = self
-            sdk.register(interactor!)
-        }
-        
-        
-
-    }
-
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        view.makeToast(error.localizedDescription, duration: 3, position:.center)
     }
 
 

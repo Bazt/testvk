@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="-926" y="32"/>
         </scene>
-        <!--View Controller-->
+        <!--Initial View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="fbs_test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="InitialViewController" customModule="fbs_test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +50,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="NIc-Ik-pJv"/>
+                    <navigationItem key="navigationItem" id="hbj-Xc-b0f">
+                        <barButtonItem key="backBarButtonItem" title="Logout" id="YWv-bx-zoP"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="aTT-c2-2ry" kind="show" identifier="friendsListSegue" id="kz2-fa-Yw0"/>
                     </connections>

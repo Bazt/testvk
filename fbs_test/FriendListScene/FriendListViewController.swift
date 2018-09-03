@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import VK_ios_sdk
 
 protocol FriendListControllerProtocol: class
 {
@@ -25,6 +26,8 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     var interactor:  FriendListInteractorProtocol?
     var friends =    [UserProtocol]()
     var currentUser: UserProtocol?
+    var refresher: UIRefreshControl!
+    
 
     func updateList(with friends: [UserProtocol])
     {
@@ -32,6 +35,11 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         {
             self.friends = friends
             self.friendsView.reloadData()
+            
+            if self.refresher.isRefreshing
+            {
+                self.refresher.endRefreshing()
+            }
         }
     }
 
@@ -66,6 +74,12 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         interactor.presenter = presenter
         presenter.viewController = self
     }
+    
+    @objc
+    func onRefresh()
+    {
+        interactor?.getFriendList()
+    }
 
     override func viewWillAppear(_ animated: Bool)
     {
@@ -77,8 +91,15 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        interactor?.getFriendList()
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Loading...")
+        friendsView.addSubview(refresher)
+        refresher.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
+        
+        refresher.beginRefreshing()
         interactor?.getDataForHeader()
+        interactor?.getFriendList()
+        
 
         self.friendsView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseCellId")
 
@@ -88,7 +109,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return friends.count ?? 0
+        return friends.count
     }
 
 
@@ -116,10 +137,19 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let index = indexPath.row
         performSegue(withIdentifier: "showDetails", sender: self)
     }
 
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        if navigationController?.viewControllers.index(of: self) == nil
+        {
+            VKSdk.forceLogout()
+            AvatarManager.instance.removeAllImages()
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let destinationController = segue.destination as? ImageSelectionViewController

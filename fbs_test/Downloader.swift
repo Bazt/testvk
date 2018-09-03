@@ -21,7 +21,7 @@ class Downloader
             
             if let localURL = localURL
             {
-                try? FileManager.default.moveItem(at: localURL, to: destination)
+                AvatarManager.instance.saveAvatar(from: localURL, to: destination)
             }
             completion()
         }.resume()
@@ -32,15 +32,15 @@ class Downloader
     func download(_ urls: [(from: URL, to: URL)], completion: @escaping () -> ())
     {
         var notFinishedCount = urls.count
-        for url in urls
+        for (from, to) in urls
         {
-            _ = URLSession.shared.downloadTask(with: url.from)
+            _ = URLSession.shared.downloadTask(with: from)
             {
                 localURL, urlResponse, error in
                 
                 if let localURL = localURL
                 {
-                    try? FileManager.default.moveItem(at: localURL, to: url.to)
+                    AvatarManager.instance.saveAvatar(from: localURL, to: to)
                 }
                 
                 notFinishedCount -= 1

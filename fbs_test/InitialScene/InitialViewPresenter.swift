@@ -9,20 +9,22 @@
 import Foundation
 
 protocol InitialViewPresenterProtocol {
-    func authorization(success: Bool)
+    func authorizationSucceded()
+    func authorizationFailed(with error: Error)
 }
 
-class InitialViewPresenter: InitialViewPresenterProtocol {
-    func authorization(success: Bool) {
-        if success
-        {
-            viewController?.authorizationSucceeded()
-        }
-        else
-        {
-            viewController?.authorizationFaild(with: nil)
-        }
+class InitialViewPresenter: InitialViewPresenterProtocol
+{
+    weak var viewController: InitialViewControllerProtocol?
+    
+    func authorizationFailed(with error: Error)
+    {
+        viewController?.authorizationFaild(with: error)
     }
     
-    weak var viewController: InitialViewControllerProtocol?
+    func authorizationSucceded()
+    {
+        viewController?.authorizationSucceeded()
+    }
+    
 }

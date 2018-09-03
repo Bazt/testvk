@@ -7,15 +7,21 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ImageSelectionInteractorProtocol
 {
-    
+   func selectImage()
 }
 
 class ImageSelectionInteractor: ImageSelectionInteractorProtocol
 {
     var presenter: ImageSelectionPresenterProtocol?
+
+    func selectImage()
+    {
+
+    }
     
-    
+
 }

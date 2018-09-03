@@ -1,16 +1,20 @@
 PODS:
+  - Toast-Swift (3.0.1)
   - VK-ios-sdk (1.4.6)
 
 DEPENDENCIES:
+  - Toast-Swift
   - VK-ios-sdk
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Toast-Swift
     - VK-ios-sdk
 
 SPEC CHECKSUMS:
+  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
 
-PODFILE CHECKSUM: e00b97e43d09e652cc7df233a04304397b8585d9
+PODFILE CHECKSUM: 2ab0504daf3d22e959b83d20897595be40af9e50
 
 COCOAPODS: 1.5.0

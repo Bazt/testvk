@@ -7,4 +7,5 @@ target 'fbs_test' do
 
   # Pods for fbs_test
     pod "VK-ios-sdk"
+    pod 'Toast-Swift'
 end

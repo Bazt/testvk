@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6100BBC32BC30BFF3743415C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100B24B83D2798D29D04D94 /* User.swift */; };
 		7C0D0E3A2131B71900E2ED19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D0E392131B71900E2ED19 /* AppDelegate.swift */; };
-		7C0D0E3C2131B71900E2ED19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D0E3B2131B71900E2ED19 /* ViewController.swift */; };
+		7C0D0E3C2131B71900E2ED19 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D0E3B2131B71900E2ED19 /* InitialViewController.swift */; };
 		7C0D0E3F2131B71900E2ED19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0E3D2131B71900E2ED19 /* Main.storyboard */; };
 		7C0D0E412131B71B00E2ED19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0E402131B71B00E2ED19 /* Assets.xcassets */; };
 		7C0D0E442131B71B00E2ED19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0E422131B71B00E2ED19 /* LaunchScreen.storyboard */; };
@@ -34,7 +34,7 @@
 		6100B24B83D2798D29D04D94 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C0D0E362131B71900E2ED19 /* fbs_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fbs_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0D0E392131B71900E2ED19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7C0D0E3B2131B71900E2ED19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7C0D0E3B2131B71900E2ED19 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		7C0D0E3E2131B71900E2ED19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7C0D0E402131B71B00E2ED19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C0D0E432131B71B00E2ED19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			children = (
 				BD8328122139A7F90048BF19 /* InitialViewInteractor.swift */,
 				BD8328132139A7F90048BF19 /* InitialViewPresenter.swift */,
-				7C0D0E3B2131B71900E2ED19 /* ViewController.swift */,
+				7C0D0E3B2131B71900E2ED19 /* InitialViewController.swift */,
 			);
 			path = InitialScene;
 			sourceTree = "<group>";
@@ -259,10 +259,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-fbs_test/Pods-fbs_test-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/VK-ios-sdk/VK_ios_sdk.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VK_ios_sdk.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +287,7 @@
 				7C2E1756213C99F1005079B3 /* Downloader.swift in Sources */,
 				7C2D7A512133199800BA417D /* FriendListViewController.swift in Sources */,
 				7C2E174D213C4665005079B3 /* ImageSelectionController.swift in Sources */,
-				7C0D0E3C2131B71900E2ED19 /* ViewController.swift in Sources */,
+				7C0D0E3C2131B71900E2ED19 /* InitialViewController.swift in Sources */,
 				7C2E1749213C0B46005079B3 /* FriendListInteractor.swift in Sources */,
 				7C0D0E3A2131B71900E2ED19 /* AppDelegate.swift in Sources */,
 				7C2E1745213BFC3F005079B3 /* RequestResult.swift in Sources */,
@@ -444,10 +446,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = fbs_test/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fbs.fbs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -470,10 +469,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = fbs_test/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fbs.fbs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -13,19 +13,27 @@ class AvatarManager
 {
     static let instance = AvatarManager()
     
-    private init()
+    internal init()
     {
-         do
-         {
-            try FileManager.default.createDirectory(at: avatarDirectoryUrl, withIntermediateDirectories: true, attributes: nil)
-         }
-        catch
-        {
-            print(error)
-        }
+        createAvatarDirectory()
     }
     
     let avatarDirectoryUrl = URL(fileURLWithPath: NSTemporaryDirectory() + ".avatars/")
+    
+    func createAvatarDirectory()
+    {
+        if !FileManager.default.fileExists(atPath: avatarDirectoryUrl.path)
+        {
+            do
+            {
+                try FileManager.default.createDirectory(at: avatarDirectoryUrl, withIntermediateDirectories: true, attributes: nil)
+            }
+            catch
+            {
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     func hasAvatarFor(userId: String) -> Bool
     {
@@ -33,10 +41,8 @@ class AvatarManager
         return FileManager.default.fileExists(atPath: path)
     }
     
-    func saveAvatar(from sourceUrl: URL, for userId: String)
+    func saveAvatar(from sourceUrl: URL, to destination: URL)
     {
-        let destination = URL(fileURLWithPath: path(for: userId))
-        
         try? FileManager.default.moveItem(at: sourceUrl, to: destination)
     }
     
@@ -51,7 +57,7 @@ class AvatarManager
         return URL(fileURLWithPath: path(for: userId))
     }
     
-    func getImage(for user: User, completion: @escaping (UIImage) -> Void)
+    func getImage(for user: UserProtocol, completion: @escaping (UIImage) -> Void)
     {
         let localUrl = url(for: user.id)
         if hasAvatarFor(userId: user.id),
@@ -67,6 +73,32 @@ class AvatarManager
                 let image = UIImage(contentsOfFile: localUrl.path) ?? UIImage(named: "default_avatar")!
                 completion(image)
             }
+        }
+    }
+    
+    func removeAllImages()
+    {
+       FileManager.default.clearTmpDirectory()
+    }
+}
+
+extension FileManager
+{
+    func clearTmpDirectory()
+    {
+        do
+        {
+            let tmpDirectory = try contentsOfDirectory(atPath: NSTemporaryDirectory())
+            try tmpDirectory.forEach
+            {
+                [unowned self] file in
+                let path = String.init(format: "%@%@", NSTemporaryDirectory(), file)
+                try self.removeItem(atPath: path)
+            }
+        }
+        catch
+        {
+            print(error)
         }
     }
 }

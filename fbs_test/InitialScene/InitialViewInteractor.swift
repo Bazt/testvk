@@ -16,6 +16,12 @@ protocol InitialViewInteractorProtocol: VKSdkDelegate {
 class InitialViewInteractor: NSObject, InitialViewInteractorProtocol  {
     var presenter: InitialViewPresenterProtocol?
     
+    private func onSucessfulAuthorization()
+    {
+        AvatarManager.instance.createAvatarDirectory()
+        presenter?.authorizationSucceded()
+    }
+    
     func authorize()
     {
         let scope = ["friends", "email"]
@@ -25,8 +31,8 @@ class InitialViewInteractor: NSObject, InitialViewInteractorProtocol  {
             if (state == VKAuthorizationState.authorized)
             {
                 // Authorized and ready to go
-                //VkDataProvider.instance.getFriendsWithImages(for: self)
-                self.presenter?.authorization(success: true)
+                self.onSucessfulAuthorization()
+                
             } else if (state == VKAuthorizationState.initialized)
             {
                 VKSdk.authorize(scope)
@@ -39,12 +45,23 @@ class InitialViewInteractor: NSObject, InitialViewInteractorProtocol  {
     
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!)
     {
-        presenter?.authorization(success: true)
+        print(result.state)
+        if let error = result.error
+        {
+            presenter?.authorizationFailed(with: error)
+        }
+        else
+        {
+            onSucessfulAuthorization()
+        }
     }
     
     func vkSdkUserAuthorizationFailed()
     {
-        presenter?.authorization(success: false)
+        let error = NSError(domain:"", code:0, userInfo: [NSLocalizedFailureReasonErrorKey: "AuthorizationFailed due to a problem with permissions"])
+        
+        
+        presenter?.authorizationFailed(with: error)
     }
     
     

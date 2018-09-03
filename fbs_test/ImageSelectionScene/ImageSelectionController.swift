@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  InitialViewController.swift
 //  fbs_test
 //
 //  Created by Oleg Shcherbakov on 25/08/2018.
@@ -25,12 +25,11 @@ class ImageSelectionViewController: UIViewController, ImageSelectionViewControll
 
     @IBAction func onSelectImage(_ sender: Any)
     {
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) || UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum)
         {
-            print("Button capture")
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = .savedPhotosAlbum;
+            //imagePicker.sourceType = .savedPhotosAlbum;
             imagePicker.allowsEditing = false
 
             self.present(imagePicker, animated: true, completion: nil)
@@ -101,7 +100,11 @@ class ImageSelectionViewController: UIViewController, ImageSelectionViewControll
         
         selectedUser?.getImage(completion:
         {
-            image in self.avatarView.image = image
+            image in 
+            DispatchQueue.main.async
+            {
+                self.avatarView.image = image
+            }
         })
 
         userNameLabel?.text = selectedUser?.name
