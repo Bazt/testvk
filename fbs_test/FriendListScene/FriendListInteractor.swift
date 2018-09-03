@@ -13,7 +13,7 @@ protocol FriendListInteractorProtocol: class {
     func getFriendList()
     func onFriendListResult(result: ResultForFriends)
     func getDataForHeader()
-    func onDataForHeader(data: HeaderInfo)
+    func onDataForHeader(user: UserProtocol)
 }
 
 class FriendListInteractor: FriendListInteractorProtocol  {
@@ -24,9 +24,9 @@ class FriendListInteractor: FriendListInteractorProtocol  {
         DataProvider.instance.getDataForHeader(for: self)
     }
     
-    func onDataForHeader(data: HeaderInfo)
+    func onDataForHeader(user: UserProtocol)
     {
-        presenter?.presentHeader(with: data)
+        presenter?.presentHeader(with: user)
     }
     
     func getFriendList()

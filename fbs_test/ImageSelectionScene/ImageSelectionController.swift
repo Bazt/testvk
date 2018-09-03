@@ -16,34 +16,55 @@ protocol ImageSelectionViewControllerProtocol: class
 
 class ImageSelectionViewController: UIViewController, ImageSelectionViewControllerProtocol, UIImagePickerControllerDelegate & UINavigationControllerDelegate
 {
-    var interactor: ImageSelectionInteractorProtocol?
-    var userInfo: HeaderInfo?
+    var interactor:   ImageSelectionInteractorProtocol?
+    var selectedUser: UserProtocol?
     
  
     @IBOutlet weak var avatarView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBAction func onSelectImage(_ sender: Any) {
-   
-    
-  
-        
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+
+    @IBAction func onSelectImage(_ sender: Any)
+    {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum)
+        {
             print("Button capture")
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .savedPhotosAlbum;
             imagePicker.allowsEditing = false
-            
+
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
 
-    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if var image = info[UIImagePickerControllerOriginalImage] as? UIImage,
+            let id = selectedUser?.id
+        {
+
+            let (h, w) = (image.size.height, image.size.width)
+            let size = min(h, w)
+            let (x, y) = (max(0, (w - h) / 2), max(0, (h - w) / 2))
+            let area = CGRect(x: x, y: y, width: size, height: size)
+            if let cgImage = image.cgImage?.cropping(to: area)
+            {
+                image = UIImage(cgImage: cgImage)
+            }
+            
+
+            let pngImage = UIImagePNGRepresentation(image)
+            try? pngImage?.write(to: AvatarManager.instance.url(for: id))
+            avatarView?.image = image
+            self.view.setNeedsLayout()
+        }
+        
+        picker.dismiss(animated: true, completion: nil);
+    }
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.dismiss(animated: true, completion:
         {
         
-            if let id = self.userInfo?.id
+            if let id = self.selectedUser?.id
             {
                 let image = UIImagePNGRepresentation(image)
                 try? image?.write(to: AvatarManager.instance.url(for: id))
@@ -78,30 +99,12 @@ class ImageSelectionViewController: UIViewController, ImageSelectionViewControll
     {
         super.viewDidLoad()
         
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        //self.navigationController!.navigationBar.backItem?.title = "Log out"
-        
-        if let id = userInfo?.id,
-           AvatarManager.instance.hasAvatarFor(userId: id)
+        selectedUser?.getImage(completion:
         {
-            let url = AvatarManager.instance.url(for: id)
-            avatarView.image = UIImage(contentsOfFile: url.path)
-        }
-        else
-        {
-            avatarView.image = UIImage(contentsOfFile: url.path)
-        }
-        
-        if url.path.contains("avatars"),
-           let data = try? Data(contentsOf: url)
-        {
-            avatarView.image = UIImage(data: data)
-        }
-    
-        
-        
-        
+            image in self.avatarView.image = image
+        })
+
+        userNameLabel?.text = selectedUser?.name
     }
     
     override func didReceiveMemoryWarning()

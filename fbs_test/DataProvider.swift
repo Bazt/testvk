@@ -54,12 +54,12 @@ class DataProvider: DataProviderProtocol
                 {
                     Downloader.instance.download(from: imageUrl, to: localAvatarUrl, completion:
                     {
-                        interactor.onDataForHeader(data: HeaderInfo(imageUrl: AvatarManager.instance.url(for: userId), name: name, id: userId))
+                        interactor.onDataForHeader(user: User(id: userId, name: name, imageUrl: localAvatarUrl))
                     })
                 }
                 else
                 {
-                    interactor.onDataForHeader(data: HeaderInfo(imageUrl: AvatarManager.instance.url(for: userId), name: name, id: userId))
+                    interactor.onDataForHeader(user: User(id: userId, name: name, imageUrl: localAvatarUrl))
                 }
             },
             errorBlock:
@@ -117,26 +117,12 @@ class DataProvider: DataProviderProtocol
                             }
                             
                             completion(ResultForFriends(withData: friends))
-//                            if toBeDownloaded.isEmpty
-//                            {
-//                                completion(ResultForFriends(withData: friends))
-//                                return
-//                            }
-//
-//                            Downloader.instance.download(toBeDownloaded, completion:
-//                            {
-//                                completion(ResultForFriends(withData: friends))
-//                            })
-                            
-                            
                         },
                         errorBlock:
                         {
                             error in
                             completion(ResultForFriends(withError: error!))
                         })
-                    
-
                 },
                 errorBlock:
                 {
@@ -152,6 +138,4 @@ class DataProvider: DataProviderProtocol
             interactor.onFriendListResult(result: $0)
         }
     }
-
-
 }
