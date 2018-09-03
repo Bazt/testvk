@@ -10,7 +10,7 @@ import Foundation
 
 protocol FriendListPresenterProtocol
 {
-    func presentFriends(friends: [FriendProtocol])
+    func presentFriends(friends: [UserProtocol])
     func presentError(error: Error?)
     func presentHeader(with data: HeaderInfo)
 }
@@ -18,7 +18,7 @@ protocol FriendListPresenterProtocol
 class FriendListPresenter: FriendListPresenterProtocol {
     weak var viewController: FriendListControllerProtocol?
     
-    func presentFriends(friends: [FriendProtocol])
+    func presentFriends(friends: [UserProtocol])
     {
         viewController?.updateList(with: friends)
     }

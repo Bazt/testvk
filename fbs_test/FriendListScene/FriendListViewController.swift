@@ -18,35 +18,37 @@ struct HeaderInfo
 
 protocol FriendListControllerProtocol: class
 {
-    func updateList(with friends: [FriendProtocol])
+    func updateList(with friends: [UserProtocol])
     func updateHeader(with data: HeaderInfo)
 }
 
 class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FriendListControllerProtocol
 
 {
-//    @IBOutlet weak var headerImage: UIImageView!
-//    @IBOutlet weak var headerTitle: UILabel!
-//    @IBOutlet var friendsView: UITableView!
     @IBOutlet weak var friendsView: UITableView!
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     
     var interactor: FriendListInteractorProtocol?
-    var friends: [FriendProtocol]?
+    var friends: [UserProtocol]?
     var headerInfo: HeaderInfo?
     
-    func updateList(with friends: [FriendProtocol])
+    func updateList(with friends: [UserProtocol])
     {
+        DispatchQueue.main.async {
         self.friends = friends
-        friendsView.reloadData()
+        self.friendsView.reloadData()
+        }
     }
     
     func updateHeader(with data: HeaderInfo)
     {
-        headerInfo = data
-        headerLabel.text = data.name
-        headerImageView.downloaded(from: data.imageUrl, id: data.id)
+        DispatchQueue.main.async {
+            self.headerInfo = data
+            self.headerLabel.text = data.name
+            self.headerImageView.image = UIImage(contentsOfFile: data.imageUrl.path)
+        }
+
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -96,8 +98,12 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         //headerImageView?.image = defaultImage
         
         
-        let url = friends?[indexPath.row].imageUrl ?? URL(string: "https://vk.com/images/camera_50.png")
-        cell.imageView?.downloaded(from: url!, id: friends?[indexPath.row].id)
+        friends?[indexPath.row].getImage(completion:
+        {
+            image in
+            cell.imageView?.image = image
+        })
+        //cell.imageView?.downloaded(from: url, id: friends?[indexPath.row].id)
         
         print("cellForRowAt \(indexPath.row), title = \(cell.textLabel?.text ?? "nil")")
         return cell
@@ -118,8 +124,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     {
         if let destinationController = segue.destination as? ImageSelectionViewController
         {
-            //destinationController.userInfo = HeaderInfo(
-            //self.show(destinationController, sender: .none)
+            destinationController.userInfo = headerInfo
         }
     }
 
@@ -129,27 +134,27 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
 //    }
 }
 
-extension UIImageView {
-    func downloaded(from url: URL, id: String?, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else { return }
-            DispatchQueue.main.async() {
-                    self.image = image
-                    let png = UIImagePNGRepresentation(image)
-                    if let id = id
-                    {
-                        
-                        
-                        let success = try? png?.write(to: AvatarManager.instance.url(for: id))
-                        print(success, id, AvatarManager.instance.url(for: id))
-                    }
-                }
-            }.resume()
-    }
-}
+//extension UIImageView {
+//    func downloaded(from url: URL, id: String?, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+//        contentMode = mode
+//        URLSession.shared.dataTask(with: url) { data, response, error in
+//            guard
+//                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+//                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+//                let data = data, error == nil,
+//                let image = UIImage(data: data)
+//                else { return }
+//            DispatchQueue.main.async() {
+//                    self.image = image
+//                    let png = UIImagePNGRepresentation(image)
+//                    if let id = id
+//                    {
+//
+//
+//                        let success = try? png?.write(to: AvatarManager.instance.url(for: id))
+//                        print(success, id, AvatarManager.instance.url(for: id))
+//                    }
+//                }
+//            }.resume()
+//    }
+//}

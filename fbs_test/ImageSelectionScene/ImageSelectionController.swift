@@ -40,14 +40,15 @@ class ImageSelectionViewController: UIViewController, ImageSelectionViewControll
 
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
-        self.dismiss(animated: true, completion: { () -> Void in
-        
-        if let id = self.userInfo?.id
+        self.dismiss(animated: true, completion:
         {
-            let image = UIImagePNGRepresentation(image)
-            try? image?.write(to: AvatarManager.instance.url(for: id))
-            
-        }
+        
+            if let id = self.userInfo?.id
+            {
+                let image = UIImagePNGRepresentation(image)
+                try? image?.write(to: AvatarManager.instance.url(for: id))
+                
+            }
         })
         
         //imageView.image = image
@@ -81,9 +82,15 @@ class ImageSelectionViewController: UIViewController, ImageSelectionViewControll
         // Do any additional setup after loading the view, typically from a nib.
         //self.navigationController!.navigationBar.backItem?.title = "Log out"
         
-        guard let url = userInfo?.imageUrl else
+        if let id = userInfo?.id,
+           AvatarManager.instance.hasAvatarFor(userId: id)
         {
-            return
+            let url = AvatarManager.instance.url(for: id)
+            avatarView.image = UIImage(contentsOfFile: url.path)
+        }
+        else
+        {
+            avatarView.image = UIImage(contentsOfFile: url.path)
         }
         
         if url.path.contains("avatars"),
@@ -91,10 +98,7 @@ class ImageSelectionViewController: UIViewController, ImageSelectionViewControll
         {
             avatarView.image = UIImage(data: data)
         }
-        else
-        {
-            avatarView.downloaded(from: url, id: userInfo?.id)
-        }
+    
         
         
         

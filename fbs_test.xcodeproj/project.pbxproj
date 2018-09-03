@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6100BBC32BC30BFF3743415C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100B24B83D2798D29D04D94 /* User.swift */; };
 		7C0D0E3A2131B71900E2ED19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D0E392131B71900E2ED19 /* AppDelegate.swift */; };
 		7C0D0E3C2131B71900E2ED19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D0E3B2131B71900E2ED19 /* ViewController.swift */; };
 		7C0D0E3F2131B71900E2ED19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0E3D2131B71900E2ED19 /* Main.storyboard */; };
 		7C0D0E412131B71B00E2ED19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0E402131B71B00E2ED19 /* Assets.xcassets */; };
 		7C0D0E442131B71B00E2ED19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0E422131B71B00E2ED19 /* LaunchScreen.storyboard */; };
 		7C2D7A512133199800BA417D /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D7A502133199800BA417D /* FriendListViewController.swift */; };
-		7C2D7A532133212600BA417D /* TestDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D7A522133212600BA417D /* TestDataProvider.swift */; };
 		7C2E1745213BFC3F005079B3 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E1744213BFC3F005079B3 /* RequestResult.swift */; };
 		7C2E1749213C0B46005079B3 /* FriendListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E1748213C0B46005079B3 /* FriendListInteractor.swift */; };
 		7C2E174B213C0B9C005079B3 /* FriendListPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E174A213C0B9C005079B3 /* FriendListPresenterProtocol.swift */; };
@@ -31,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		1252481100F905863D4D5F57 /* Pods-fbs_test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fbs_test.release.xcconfig"; path = "Pods/Target Support Files/Pods-fbs_test/Pods-fbs_test.release.xcconfig"; sourceTree = "<group>"; };
+		6100B24B83D2798D29D04D94 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C0D0E362131B71900E2ED19 /* fbs_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fbs_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0D0E392131B71900E2ED19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C0D0E3B2131B71900E2ED19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		7C0D0E452131B71B00E2ED19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C0D0E5F2131BBFF00E2ED19 /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
 		7C2D7A502133199800BA417D /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
-		7C2D7A522133212600BA417D /* TestDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataProvider.swift; sourceTree = "<group>"; };
 		7C2E1744213BFC3F005079B3 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		7C2E1748213C0B46005079B3 /* FriendListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListInteractor.swift; sourceTree = "<group>"; };
 		7C2E174A213C0B9C005079B3 /* FriendListPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -115,11 +115,11 @@
 				7C0D0E402131B71B00E2ED19 /* Assets.xcassets */,
 				7C0D0E452131B71B00E2ED19 /* Info.plist */,
 				7C0D0E5F2131BBFF00E2ED19 /* BridgeHeader.h */,
-				7C2D7A522133212600BA417D /* TestDataProvider.swift */,
 				7C6FBF01213ACE5D00C758AF /* DataProvider.swift */,
 				7C2E1744213BFC3F005079B3 /* RequestResult.swift */,
 				7C2E1753213C9260005079B3 /* AvatarManager.swift */,
 				7C2E1755213C99F1005079B3 /* Downloader.swift */,
+				6100B24B83D2798D29D04D94 /* User.swift */,
 			);
 			path = fbs_test;
 			sourceTree = "<group>";
@@ -286,12 +286,12 @@
 				7C2D7A512133199800BA417D /* FriendListViewController.swift in Sources */,
 				7C2E174D213C4665005079B3 /* ImageSelectionController.swift in Sources */,
 				7C0D0E3C2131B71900E2ED19 /* ViewController.swift in Sources */,
-				7C2D7A532133212600BA417D /* TestDataProvider.swift in Sources */,
 				7C2E1749213C0B46005079B3 /* FriendListInteractor.swift in Sources */,
 				7C0D0E3A2131B71900E2ED19 /* AppDelegate.swift in Sources */,
 				7C2E1745213BFC3F005079B3 /* RequestResult.swift in Sources */,
 				BD8328142139A7FA0048BF19 /* InitialViewInteractor.swift in Sources */,
 				7C2E1752213C4707005079B3 /* ImageSelectionPresenter.swift in Sources */,
+				6100BBC32BC30BFF3743415C /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

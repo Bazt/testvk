@@ -9,38 +9,7 @@
 import Foundation
 import VK_ios_sdk
 
-protocol FriendProtocol
-{
-    var name: String?
-    {
-        get
-    }
-    var id: String?
-    {
-        get
-    }
-    var imageUrl: URL?
-    {
-        get set
-    }
-}
-
-
-struct Friend: FriendProtocol
-{
-    var name: String?
-    var id: String?
-    var imageUrl: URL?
-
-    init(name: String? = nil, id: String? = nil, imageUrl: URL? = nil)
-    {
-        self.name = name
-        self.id = id
-        self.imageUrl = imageUrl
-    }
-}
-
-typealias ResultForFriends = RequestResult<[FriendProtocol], Error>
+typealias ResultForFriends = RequestResult<[UserProtocol], Error>
 
 protocol DataProviderProtocol
 {
@@ -52,7 +21,7 @@ class DataProvider: DataProviderProtocol
 {
     static let instance = DataProvider()
 
-    private var friends: [FriendProtocol]
+    private var friends: [UserProtocol]
 
     private init()
     {
@@ -71,16 +40,27 @@ class DataProvider: DataProviderProtocol
                     let info = response.first as? [AnyHashable : Any],
                     let firstName = info["first_name"] as? String,
                     let lastName = info["last_name"] as? String,
-                    let id = info["id"] as? String,
-                    let imageUrl = info ["photo_50"] as? String else
+                    let id = info["id"] as? Int,
+                    let imagePath = info ["photo_50"] as? String,
+                    let imageUrl = URL(string: imagePath) else
                 {
                     return
                 }
                 
+                let userId = String(id)
+                let localAvatarUrl = AvatarManager.instance.url(for: userId)
                 let name = "\(firstName) \(lastName)"
-                let url = URL(string: imageUrl)!
-                interactor.onDataForHeader(data: HeaderInfo(imageUrl: url, name: name, id: id))
-            
+                if !AvatarManager.instance.hasAvatarFor(userId: userId)
+                {
+                    Downloader.instance.download(from: imageUrl, to: localAvatarUrl, completion:
+                    {
+                        interactor.onDataForHeader(data: HeaderInfo(imageUrl: AvatarManager.instance.url(for: userId), name: name, id: userId))
+                    })
+                }
+                else
+                {
+                    interactor.onDataForHeader(data: HeaderInfo(imageUrl: AvatarManager.instance.url(for: userId), name: name, id: userId))
+                }
             },
             errorBlock:
             {
@@ -118,23 +98,37 @@ class DataProvider: DataProviderProtocol
                                 return
                             }
                             
-                            var friends = [Friend]()
+                            var friends = [UserProtocol]()
+                            
                             _ = response.map
                             {
                                 user in
                                 if let firstName = user["first_name"] as? String,
                                     let lastName = user["last_name"] as? String,
                                     let id = user["id"] as? Int,
-                                    let urlString = user["photo_50"] as? String
+                                    let imagePath = user["photo_50"] as? String,
+                                    let imageUrl = URL(string: imagePath)
                                 {
                                     let name = "\(firstName) \(lastName)"
                                     let userId = String(id)
-                                    let friend = Friend(name: name, id: userId, imageUrl: URL(string: urlString)!)
-                                    
+                                    let friend = User(id: userId, name: name, imageUrl: imageUrl)
                                     friends.append(friend)
                                 }
                             }
+                            
                             completion(ResultForFriends(withData: friends))
+//                            if toBeDownloaded.isEmpty
+//                            {
+//                                completion(ResultForFriends(withData: friends))
+//                                return
+//                            }
+//
+//                            Downloader.instance.download(toBeDownloaded, completion:
+//                            {
+//                                completion(ResultForFriends(withData: friends))
+//                            })
+                            
+                            
                         },
                         errorBlock:
                         {
@@ -151,29 +145,10 @@ class DataProvider: DataProviderProtocol
                 })
     }
     
-    private func updateAllUrls()
-    {
-        var changedFriends = [FriendProtocol]()
-        
-        for friend in friends
-        {
-            let avatarUrl = AvatarManager.instance.url(for: friend.id!)
-            if !AvatarManager.instance.haveAvatarFor(userId: friend.id!)
-            {
-                var newFriend = friend
-                newFriend.imageUrl = avatarUrl
-                changedFriends.append(newFriend)
-            }
-        }
-        
-        friends = changedFriends
-    }
-    
     func getFriendsWithImages(for interactor: FriendListInteractorProtocol)
     {
         obtainFriends
         {
-            self.updateAllUrls()
             interactor.onFriendListResult(result: $0)
         }
     }

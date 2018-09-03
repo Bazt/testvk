@@ -13,7 +13,7 @@ class Downloader
     
     private init() {}
     
-    func downloadImage(from url: URL, to destination: URL)
+    func download(from url: URL, to destination: URL, completion: @escaping () -> ())
     {
         _ = URLSession.shared.downloadTask(with: url)
         {
@@ -23,7 +23,33 @@ class Downloader
             {
                 try? FileManager.default.moveItem(at: localURL, to: destination)
             }
+            completion()
         }.resume()
+    }
+    
+    
+    
+    func download(_ urls: [(from: URL, to: URL)], completion: @escaping () -> ())
+    {
+        var notFinishedCount = urls.count
+        for url in urls
+        {
+            _ = URLSession.shared.downloadTask(with: url.from)
+            {
+                localURL, urlResponse, error in
+                
+                if let localURL = localURL
+                {
+                    try? FileManager.default.moveItem(at: localURL, to: url.to)
+                }
+                
+                notFinishedCount -= 1
+                if notFinishedCount == 0
+                {
+                    completion()
+                }
+            }.resume()
+        }
     }
         
         

@@ -7,18 +7,27 @@
 //
 
 import Foundation
+import UIKit
+
 class AvatarManager
 {
     static let instance = AvatarManager()
     
     private init()
     {
-        try? FileManager.default.createDirectory(at: avatarDirectoryUrl, withIntermediateDirectories: true, attributes: nil)
+         do
+         {
+            try FileManager.default.createDirectory(at: avatarDirectoryUrl, withIntermediateDirectories: true, attributes: nil)
+         }
+        catch
+        {
+            print(error)
+        }
     }
     
-    let avatarDirectoryUrl = URL(string: NSTemporaryDirectory() + ".avatars/")!
+    let avatarDirectoryUrl = URL(fileURLWithPath: NSTemporaryDirectory() + ".avatars/")
     
-    func haveAvatarFor(userId: String) -> Bool
+    func hasAvatarFor(userId: String) -> Bool
     {
         let path = self.path(for: userId)
         return FileManager.default.fileExists(atPath: path)
@@ -26,7 +35,7 @@ class AvatarManager
     
     func saveAvatar(from sourceUrl: URL, for userId: String)
     {
-        let destination = URL(string: path(for: userId))!
+        let destination = URL(fileURLWithPath: path(for: userId))
         
         try? FileManager.default.moveItem(at: sourceUrl, to: destination)
     }
@@ -39,6 +48,25 @@ class AvatarManager
     
     func url(for userId: String) -> URL
     {
-        return URL(string: path(for: userId))!
+        return URL(fileURLWithPath: path(for: userId))
+    }
+    
+    func getImage(for user: User, completion: @escaping (UIImage) -> Void)
+    {
+        let localUrl = url(for: user.id)
+        if hasAvatarFor(userId: user.id),
+            let image = UIImage(contentsOfFile: localUrl.path)
+        {
+            completion(image)
+        }
+        else
+        {
+            Downloader.instance.download(from: user.imageUrl, to: localUrl)
+            {
+                let localUrl = self.url(for: user.id)
+                let image = UIImage(contentsOfFile: localUrl.path) ?? UIImage(named: "default_avatar")!
+                completion(image)
+            }
+        }
     }
 }
