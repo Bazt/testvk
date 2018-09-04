@@ -1,11 +1,3 @@
-//
-//  FBSTableVC.swift
-//  fbs_test
-//
-//  Created by Oleg Shcherbakov on 26/08/2018.
-//  Copyright © 2018 Oleg Shcherbakov. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import VK_ios_sdk
@@ -19,15 +11,15 @@ protocol FriendListControllerProtocol: class
 class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FriendListControllerProtocol
 
 {
-    @IBOutlet weak var friendsView:     UITableView!
+    @IBOutlet weak var friendsView: UITableView!
     @IBOutlet weak var headerImageView: UIImageView!
-    @IBOutlet weak var headerLabel:     UILabel!
+    @IBOutlet weak var headerLabel: UILabel!
 
-    var interactor:  FriendListInteractorProtocol?
-    var friends =    [UserProtocol]()
+    var interactor: FriendListInteractorProtocol?
+    var friends = [UserProtocol]()
     var currentUser: UserProtocol?
     var refresher: UIRefreshControl!
-    
+
 
     func updateList(with friends: [UserProtocol])
     {
@@ -35,7 +27,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         {
             self.friends = friends
             self.friendsView.reloadData()
-            
+
             if self.refresher.isRefreshing
             {
                 self.refresher.endRefreshing()
@@ -69,12 +61,12 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     private func setup()
     {
         let interactor = FriendListInteractor()
-        let presenter  = FriendListPresenter()
+        let presenter = FriendListPresenter()
         self.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = self
     }
-    
+
     @objc
     func onRefresh()
     {
@@ -85,7 +77,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     {
         friendsView.reloadData()
     }
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -95,11 +87,11 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         refresher.attributedTitle = NSAttributedString(string: "Loading...")
         friendsView.addSubview(refresher)
         refresher.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
-        
+
         refresher.beginRefreshing()
         interactor?.getDataForHeader()
         interactor?.getFriendList()
-        
+
 
         self.friendsView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseCellId")
 
@@ -140,7 +132,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         performSegue(withIdentifier: "showDetails", sender: self)
     }
 
-    
+
     override func viewWillDisappear(_ animated: Bool)
     {
         if navigationController?.viewControllers.index(of: self) == nil
@@ -149,7 +141,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
             AvatarManager.instance.removeAllImages()
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let destinationController = segue.destination as? ImageSelectionViewController

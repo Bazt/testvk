@@ -1,11 +1,3 @@
-//
-//  InitialViewController.swift
-//  fbs_test
-//
-//  Created by Oleg Shcherbakov on 25/08/2018.
-//  Copyright © 2018 Oleg Shcherbakov. All rights reserved.
-//
-
 import UIKit
 import VK_ios_sdk
 import Toast_Swift
@@ -25,12 +17,14 @@ class InitialViewController: UIViewController, InitialViewControllerProtocol, VK
         interactor?.authorize()
     }
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder)
+    {
         super.init(coder: aDecoder)
         setup()
     }
@@ -43,7 +37,7 @@ class InitialViewController: UIViewController, InitialViewControllerProtocol, VK
         interactor.presenter = presenter
         presenter.viewController = self
     }
-    
+
     func showNextController()
     {
         self.performSegue(withIdentifier: "friendsListSegue", sender: self)
@@ -69,17 +63,17 @@ class InitialViewController: UIViewController, InitialViewControllerProtocol, VK
             self.dismiss(animated: true, completion:
             {
 
-                self.present(controller, animated: true, completion:nil)
+                self.present(controller, animated: true, completion: nil)
             })
-        }
-        else
+        } else
         {
-            self.present(controller, animated: true, completion:nil)
+            self.present(controller, animated: true, completion: nil)
         }
     }
 
     func vkSdkNeedCaptchaEnter(_ captchaError: VKError!)
     {
+
     }
 
     // MARK: InitialViewControllerProtocol
@@ -90,7 +84,7 @@ class InitialViewController: UIViewController, InitialViewControllerProtocol, VK
 
     func authorizationFaild(with error: Error)
     {
-        view.makeToast(error.localizedDescription, duration: 3, position:.center)
+        view.makeToast(error.localizedDescription, duration: 3, position: .center)
     }
 
 

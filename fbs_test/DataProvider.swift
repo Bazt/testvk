@@ -1,11 +1,3 @@
-//
-//  VkDataProvider.swift
-//  fbs_test
-//
-//  Created by Oleg Shcherbakov on 01/09/2018.
-//  Copyright © 2018 Oleg Shcherbakov. All rights reserved.
-//
-
 import Foundation
 import VK_ios_sdk
 
@@ -27,46 +19,45 @@ class DataProvider: DataProviderProtocol
     {
         friends = []
     }
-    
+
     func getDataForHeader(for interactor: FriendListInteractorProtocol)
     {
-        let vk = VKApi.users().get(["fields" : "photo_50"])
+        let vk = VKApi.users().get(["fields": "photo_50"])
         vk?.execute(
-            resultBlock:
-            {
-                response in
-                
-                guard let response = response?.json as? [Any],
-                    let info = response.first as? [AnyHashable : Any],
-                    let firstName = info["first_name"] as? String,
-                    let lastName = info["last_name"] as? String,
-                    let id = info["id"] as? Int,
-                    let imagePath = info ["photo_50"] as? String,
-                    let imageUrl = URL(string: imagePath) else
+                resultBlock:
                 {
-                    return
-                }
-                
-                let userId = String(id)
-                let localAvatarUrl = AvatarManager.instance.url(for: userId)
-                let name = "\(firstName) \(lastName)"
-                if !AvatarManager.instance.hasAvatarFor(userId: userId)
-                {
-                    Downloader.instance.download(from: imageUrl, to: localAvatarUrl, completion:
+                    response in
+
+                    guard let response = response?.json as? [Any],
+                          let info = response.first as? [AnyHashable: Any],
+                          let firstName = info["first_name"] as? String,
+                          let lastName = info["last_name"] as? String,
+                          let id = info["id"] as? Int,
+                          let imagePath = info["photo_50"] as? String,
+                          let imageUrl = URL(string: imagePath) else
+                    {
+                        return
+                    }
+
+                    let userId = String(id)
+                    let localAvatarUrl = AvatarManager.instance.url(for: userId)
+                    let name = "\(firstName) \(lastName)"
+                    if !AvatarManager.instance.hasAvatarFor(userId: userId)
+                    {
+                        Downloader.instance.download(from: imageUrl, to: localAvatarUrl, completion:
+                        {
+                            interactor.onDataForHeader(user: User(id: userId, name: name, imageUrl: localAvatarUrl))
+                        })
+                    } else
                     {
                         interactor.onDataForHeader(user: User(id: userId, name: name, imageUrl: localAvatarUrl))
-                    })
-                }
-                else
+                    }
+                },
+                errorBlock:
                 {
-                    interactor.onDataForHeader(user: User(id: userId, name: name, imageUrl: localAvatarUrl))
-                }
-            },
-            errorBlock:
-            {
-                error in
-                
-            })
+                    error in
+
+                })
     }
 
     private func obtainFriends(completion: @escaping (ResultForFriends) -> Void)
@@ -89,40 +80,40 @@ class DataProvider: DataProviderProtocol
 
                     let vkGetUserInfo = VKApi.users().get(["user_ids": ids, "fields": "photo_50"])
                     vkGetUserInfo?.execute(
-                        resultBlock:
-                        {
-                            (response) in
-                            
-                            guard let response = response?.json as? [[AnyHashable: Any]] else
+                            resultBlock:
                             {
-                                return
-                            }
-                            
-                            var friends = [UserProtocol]()
-                            
-                            _ = response.map
-                            {
-                                user in
-                                if let firstName = user["first_name"] as? String,
-                                    let lastName = user["last_name"] as? String,
-                                    let id = user["id"] as? Int,
-                                    let imagePath = user["photo_50"] as? String,
-                                    let imageUrl = URL(string: imagePath)
+                                (response) in
+
+                                guard let response = response?.json as? [[AnyHashable: Any]] else
                                 {
-                                    let name = "\(firstName) \(lastName)"
-                                    let userId = String(id)
-                                    let friend = User(id: userId, name: name, imageUrl: imageUrl)
-                                    friends.append(friend)
+                                    return
                                 }
-                            }
-                            
-                            completion(ResultForFriends(withData: friends))
-                        },
-                        errorBlock:
-                        {
-                            error in
-                            completion(ResultForFriends(withError: error!))
-                        })
+
+                                var friends = [UserProtocol]()
+
+                                _ = response.map
+                                {
+                                    user in
+                                    if let firstName = user["first_name"] as? String,
+                                       let lastName = user["last_name"] as? String,
+                                       let id = user["id"] as? Int,
+                                       let imagePath = user["photo_50"] as? String,
+                                       let imageUrl = URL(string: imagePath)
+                                    {
+                                        let name = "\(firstName) \(lastName)"
+                                        let userId = String(id)
+                                        let friend = User(id: userId, name: name, imageUrl: imageUrl)
+                                        friends.append(friend)
+                                    }
+                                }
+
+                                completion(ResultForFriends(withData: friends))
+                            },
+                            errorBlock:
+                            {
+                                error in
+                                completion(ResultForFriends(withError: error!))
+                            })
                 },
                 errorBlock:
                 {
@@ -130,7 +121,7 @@ class DataProvider: DataProviderProtocol
                     completion(ResultForFriends(withError: error!))
                 })
     }
-    
+
     func getFriendsWithImages(for interactor: FriendListInteractorProtocol)
     {
         obtainFriends

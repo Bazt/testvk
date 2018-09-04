@@ -8,7 +8,8 @@
 
 import Foundation
 
-protocol InitialViewPresenterProtocol {
+protocol InitialViewPresenterProtocol
+{
     func authorizationSucceded()
     func authorizationFailed(with error: Error)
 }
@@ -16,15 +17,15 @@ protocol InitialViewPresenterProtocol {
 class InitialViewPresenter: InitialViewPresenterProtocol
 {
     weak var viewController: InitialViewControllerProtocol?
-    
+
     func authorizationFailed(with error: Error)
     {
         viewController?.authorizationFaild(with: error)
     }
-    
+
     func authorizationSucceded()
     {
         viewController?.authorizationSucceeded()
     }
-    
+
 }
