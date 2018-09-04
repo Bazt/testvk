@@ -17,6 +17,7 @@ class InitialViewController: UIViewController, InitialViewControllerProtocol, VK
         interactor?.authorize()
     }
 
+    // MARK: UIViewController
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -73,7 +74,6 @@ class InitialViewController: UIViewController, InitialViewControllerProtocol, VK
 
     func vkSdkNeedCaptchaEnter(_ captchaError: VKError!)
     {
-
     }
 
     // MARK: InitialViewControllerProtocol
@@ -86,7 +86,5 @@ class InitialViewController: UIViewController, InitialViewControllerProtocol, VK
     {
         view.makeToast(error.localizedDescription, duration: 3, position: .center)
     }
-
-
 }
 

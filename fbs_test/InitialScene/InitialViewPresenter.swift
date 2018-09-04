@@ -18,6 +18,8 @@ class InitialViewPresenter: InitialViewPresenterProtocol
 {
     weak var viewController: InitialViewControllerProtocol?
 
+
+    // MARK:  InitialViewPresenterProtocol
     func authorizationFailed(with error: Error)
     {
         viewController?.authorizationFaild(with: error)

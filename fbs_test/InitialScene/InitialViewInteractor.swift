@@ -10,12 +10,7 @@ class InitialViewInteractor: NSObject, InitialViewInteractorProtocol
 {
     var presenter: InitialViewPresenterProtocol?
 
-    private func onSucessfulAuthorization()
-    {
-        AvatarManager.instance.createAvatarDirectory()
-        presenter?.authorizationSucceded()
-    }
-
+    // MARK: InitialViewInteractorProtocol
     func authorize()
     {
         let scope = ["friends"]
@@ -37,6 +32,13 @@ class InitialViewInteractor: NSObject, InitialViewInteractorProtocol
         }
     }
 
+    private func onSucessfulAuthorization()
+    {
+        AvatarManager.instance.createAvatarDirectory()
+        presenter?.authorizationSucceded()
+    }
+
+    // MARK: VKSdkDelegate
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!)
     {
         print(result.state)
@@ -52,10 +54,6 @@ class InitialViewInteractor: NSObject, InitialViewInteractorProtocol
     func vkSdkUserAuthorizationFailed()
     {
         let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey: "AuthorizationFailed due to a problem with permissions"])
-
-
         presenter?.authorizationFailed(with: error)
     }
-
-
 }

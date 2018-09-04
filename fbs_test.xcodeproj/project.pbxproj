@@ -16,7 +16,7 @@
 		7C2D7A512133199800BA417D /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D7A502133199800BA417D /* FriendListViewController.swift */; };
 		7C2E1745213BFC3F005079B3 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E1744213BFC3F005079B3 /* RequestResult.swift */; };
 		7C2E1749213C0B46005079B3 /* FriendListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E1748213C0B46005079B3 /* FriendListInteractor.swift */; };
-		7C2E174B213C0B9C005079B3 /* FriendListPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E174A213C0B9C005079B3 /* FriendListPresenterProtocol.swift */; };
+		7C2E174B213C0B9C005079B3 /* FriendListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E174A213C0B9C005079B3 /* FriendListPresenter.swift */; };
 		7C2E174D213C4665005079B3 /* ImageSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E174C213C4665005079B3 /* ImageSelectionController.swift */; };
 		7C2E1750213C46E6005079B3 /* ImageSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E174F213C46E6005079B3 /* ImageSelectionInteractor.swift */; };
 		7C2E1752213C4707005079B3 /* ImageSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E1751213C4707005079B3 /* ImageSelectionPresenter.swift */; };
@@ -43,7 +43,7 @@
 		7C2D7A502133199800BA417D /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		7C2E1744213BFC3F005079B3 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		7C2E1748213C0B46005079B3 /* FriendListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListInteractor.swift; sourceTree = "<group>"; };
-		7C2E174A213C0B9C005079B3 /* FriendListPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListPresenterProtocol.swift; sourceTree = "<group>"; };
+		7C2E174A213C0B9C005079B3 /* FriendListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListPresenter.swift; sourceTree = "<group>"; };
 		7C2E174C213C4665005079B3 /* ImageSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionController.swift; sourceTree = "<group>"; };
 		7C2E174F213C46E6005079B3 /* ImageSelectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionInteractor.swift; sourceTree = "<group>"; };
 		7C2E1751213C4707005079B3 /* ImageSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionPresenter.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 			children = (
 				7C2D7A502133199800BA417D /* FriendListViewController.swift */,
 				7C2E1748213C0B46005079B3 /* FriendListInteractor.swift */,
-				7C2E174A213C0B9C005079B3 /* FriendListPresenterProtocol.swift */,
+				7C2E174A213C0B9C005079B3 /* FriendListPresenter.swift */,
 			);
 			path = FriendListScene;
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C2E174B213C0B9C005079B3 /* FriendListPresenterProtocol.swift in Sources */,
+				7C2E174B213C0B9C005079B3 /* FriendListPresenter.swift in Sources */,
 				7C2E1750213C46E6005079B3 /* ImageSelectionInteractor.swift in Sources */,
 				7C6FBF02213ACE5D00C758AF /* DataProvider.swift in Sources */,
 				7C2E1754213C9260005079B3 /* AvatarManager.swift in Sources */,
@@ -446,7 +446,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = fbs_test/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fbs.fbs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -469,7 +472,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = fbs_test/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fbs.fbs-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

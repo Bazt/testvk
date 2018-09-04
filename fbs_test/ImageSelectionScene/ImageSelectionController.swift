@@ -6,9 +6,7 @@ protocol ImageSelectionViewControllerProtocol: class
 
 }
 
-class ImageSelectionViewController: UIViewController, ImageSelectionViewControllerProtocol, UIImagePickerControllerDelegate
-
-& UINavigationControllerDelegate
+class ImageSelectionViewController: UIViewController, ImageSelectionViewControllerProtocol, UIImagePickerControllerDelegate & UINavigationControllerDelegate
 {
     var interactor: ImageSelectionInteractorProtocol?
     var selectedUser: UserProtocol?
@@ -32,9 +30,6 @@ class ImageSelectionViewController: UIViewController, ImageSelectionViewControll
 
         alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
 
-        /*If you want work actionsheet on ipad
-         then you have to use popoverPresentationController to present the actionsheet,
-         otherwise app will crash on iPad */
         switch UIDevice.current.userInterfaceIdiom
         {
         case .pad:
@@ -102,7 +97,7 @@ class ImageSelectionViewController: UIViewController, ImageSelectionViewControll
         picker.dismiss(animated: true, completion: nil);
     }
 
-    func rotateImage(image: UIImage) -> UIImage
+    private func rotateImage(image: UIImage) -> UIImage
     {
 
         if (image.imageOrientation == UIImageOrientation.up)
@@ -120,6 +115,7 @@ class ImageSelectionViewController: UIViewController, ImageSelectionViewControll
         return copy!
     }
 
+    // MARK: UIViewController
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -156,35 +152,5 @@ class ImageSelectionViewController: UIViewController, ImageSelectionViewControll
         })
 
         userNameLabel?.text = selectedUser?.name
-    }
-
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-}
-
-extension UIImage
-{
-
-    func updateImageOrientionUpSide() -> UIImage?
-    {
-        if self.imageOrientation == .up
-        {
-            return self
-        }
-
-        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
-        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
-        if let normalizedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        {
-            UIGraphicsEndImageContext()
-            return normalizedImage
-        }
-        UIGraphicsEndImageContext()
-        return nil
     }
 }

@@ -2,7 +2,6 @@ import Foundation
 
 protocol ImageSelectionPresenterProtocol
 {
-
 }
 
 class ImageSelectionPresenter: ImageSelectionPresenterProtocol

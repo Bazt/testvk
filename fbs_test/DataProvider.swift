@@ -20,6 +20,7 @@ class DataProvider: DataProviderProtocol
         friends = []
     }
 
+    // MARK: DataProviderProtocol
     func getDataForHeader(for interactor: FriendListInteractorProtocol)
     {
         let vk = VKApi.users().get(["fields": "photo_50"])
@@ -60,6 +61,14 @@ class DataProvider: DataProviderProtocol
                 })
     }
 
+    func getFriendsWithImages(for interactor: FriendListInteractorProtocol)
+    {
+        obtainFriends
+        {
+            interactor.onFriendListResult(result: $0)
+        }
+    }
+
     private func obtainFriends(completion: @escaping (ResultForFriends) -> Void)
     {
         let vkGetFriends = VKApi.friends().get()
@@ -77,7 +86,7 @@ class DataProvider: DataProviderProtocol
                     let ids = friendIds.map {
                         String($0)
                     }.joined(separator: ",")
-
+                    
                     let vkGetUserInfo = VKApi.users().get(["user_ids": ids, "fields": "photo_50"])
                     vkGetUserInfo?.execute(
                             resultBlock:
@@ -122,11 +131,4 @@ class DataProvider: DataProviderProtocol
                 })
     }
 
-    func getFriendsWithImages(for interactor: FriendListInteractorProtocol)
-    {
-        obtainFriends
-        {
-            interactor.onFriendListResult(result: $0)
-        }
-    }
 }

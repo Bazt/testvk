@@ -20,7 +20,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     var currentUser: UserProtocol?
     var refresher: UIRefreshControl!
 
-
+    // MARK: FriendListControllerProtocol
     func updateList(with friends: [UserProtocol])
     {
         DispatchQueue.main.async
@@ -46,6 +46,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     }
 
+    //MARK: UIViewController
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -65,12 +66,6 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = self
-    }
-
-    @objc
-    func onRefresh()
-    {
-        interactor?.getFriendList()
     }
 
     override func viewWillAppear(_ animated: Bool)
@@ -152,5 +147,11 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
                 destinationController.selectedUser = friends[row]
             }
         }
+    }
+
+    @objc
+    func onRefresh()
+    {
+        interactor?.getFriendList()
     }
 }

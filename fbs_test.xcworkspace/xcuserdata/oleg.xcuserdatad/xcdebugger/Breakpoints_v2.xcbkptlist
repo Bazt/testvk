@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "fbs_test/AvatarManager.swift"
-            timestampString = "557714528.89639"
+            timestampString = "557715350.0438761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -202,13 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "fbs_test/AvatarManager.swift"
-            timestampString = "557714528.896793"
+            timestampString = "557715350.044332"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "FileManager"
-            landmarkType = "21">
+            startingLineNumber = "94"
+            endingLineNumber = "94">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -218,13 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "fbs_test/AvatarManager.swift"
-            timestampString = "557714528.8970701"
+            timestampString = "557715350.044567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "clearTmpDirectory()"
-            landmarkType = "7">
+            startingLineNumber = "94"
+            endingLineNumber = "94">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -234,7 +230,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "fbs_test/DataProvider.swift"
-            timestampString = "557714465.023326"
+            timestampString = "557715350.044809"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"

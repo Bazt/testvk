@@ -10,7 +10,8 @@ protocol FriendListInteractorProtocol: class {
 
 class FriendListInteractor: FriendListInteractorProtocol  {
     var presenter: FriendListPresenterProtocol?
-    
+
+    // MARK: FriendListInteractorProtocol
     func getDataForHeader()
     {
         DataProvider.instance.getDataForHeader(for: self)
@@ -36,6 +37,4 @@ class FriendListInteractor: FriendListInteractorProtocol  {
         
         presenter?.presentFriends(friends: friends)
     }
-    
-    
 }

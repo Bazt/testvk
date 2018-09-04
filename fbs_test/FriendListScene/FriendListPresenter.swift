@@ -18,7 +18,6 @@ class FriendListPresenter: FriendListPresenterProtocol
 
     func presentError(error: Error?)
     {
-
     }
 
     func presentHeader(with user: UserProtocol)
